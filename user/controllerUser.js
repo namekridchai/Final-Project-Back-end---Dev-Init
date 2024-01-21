@@ -20,11 +20,37 @@ const register = async(req,res)=>{
         // Store hash in your password DB.
       });
       res.status(201);
-      res.send('register successfully');
+      res.send(`register successfully ${req.session.username}`);
     }
     else{
-      res.status(404);
+      res.status(400);
       res.send('this user_name is already registered');
     }   
 }
-export default {register};
+
+const login = async(req,res)=>{
+    const username = req.body.username;
+    // console.log(username);
+    const user_db = await User.findOne({user_name:username})
+    if (!user_db){
+        res.status(400);
+        res.send(`no user name ${username} in system`);
+        return;
+    }
+
+    const password = req.body.password;
+    bcrypt.compare(password, user_db.password, function(err, result) {
+        if(result){
+            req.session.username = username
+            res.status(201);
+            res.send(`login successfully for user ${req.session.username}`);
+
+        }
+        else{
+            res.status(400);
+            res.send(`wrong password  for user ${username}`);
+            req.session.username
+        }
+    });
+}
+export default {register,login};
