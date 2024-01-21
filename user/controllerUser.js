@@ -39,10 +39,14 @@ const login = async(req,res)=>{
     }
 
     const password = req.body.password;
-    bcrypt.compare(password, user_db.password, function(err, result) {
+    bcrypt.compare(password, user_db.password, async function(err, result) {
         if(result){
-            req.session.username = username
+            const currentDate = new Date();
+            user_db.last_login  = currentDate;
+            await user_db.save();
+            req.session.username = username;
             res.status(201);
+            
             res.send(`login successfully for user ${req.session.username}`);
 
         }
