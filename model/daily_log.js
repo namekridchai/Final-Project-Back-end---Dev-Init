@@ -16,4 +16,4 @@ const dailyLogSchema = new Schema({
 );
 
 const DailyLog = mongoose.model('DailyLogs', dailyLogSchema);
-module.exports = DailyLog;
+export default  DailyLog;
