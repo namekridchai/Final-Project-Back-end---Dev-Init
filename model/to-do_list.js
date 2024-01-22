@@ -16,4 +16,4 @@ const todoListSchema = new Schema({
 );
 
 const TodoList = mongoose.model('TodoList', todoListSchema);
-module.exports = TodoList;
+export default  TodoList;

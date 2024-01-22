@@ -3,6 +3,8 @@ import express  from 'express';
 import mongoose from 'mongoose';
 import routerUser from './user/routeUser.js';
 import routerLog from './daily_log/routeLog.js';
+import routerTodo from './todo/routeTodo.js';
+import routerEvent from './event/routeEvent.js';
 const app = express()
 const port = 3000
 
@@ -14,6 +16,9 @@ app.use(session({ secret: 'keyboard cat', saveUninitialized : false}))
 app.use(express.json());
 app.use('/users', routerUser);
 app.use('/logs',routerLog);
+app.use('/todos',routerTodo);
+app.use('/events',routerEvent);
+
 
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/todoListDB');

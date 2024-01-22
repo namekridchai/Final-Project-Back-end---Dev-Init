@@ -14,5 +14,5 @@ const calendarEventSchema = new Schema({
  }
 );
 
-const CalendarEvents = mongoose.model('CalendarEvents', calendarEventSchema);
-module.exports = CalendarEvents;
+const CalendarEvent = mongoose.model('CalendarEvents', calendarEventSchema);
+export default  CalendarEvent;
