@@ -20,15 +20,14 @@ const register = async(req,res)=>{
       
       req.session.username = username;
       req.session._id = newUser._id;
-      
-      });
-
       res.status(201);
       res.send(`register successfully ${req.session.username}`);
-
+      
+      });
     }
     else{
-      
+        delete req.session.username 
+        delete req.session._id 
         res.status(400);
         res.send('this user_name is already registered');
     }   
@@ -59,6 +58,8 @@ const login = async(req,res)=>{
 
         }
         else{
+            delete req.session.username 
+            delete req.session._id 
             res.status(400);
             res.send(`wrong password  for user ${username}`);
             req.session.username
