@@ -50,7 +50,7 @@ const isAuthorEvent = async(req,res,next)=>{
         next()
     }
     else{
-        res.status(400)
+        res.status(401)
         res.send('Unauthorize')
     }
     
