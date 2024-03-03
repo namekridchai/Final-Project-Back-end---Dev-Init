@@ -1,4 +1,4 @@
-# Record of Life (only back-end)
+# Life Recorder (only back-end)
 ## Description
 This project allow users to
 - Save every day moments of your life
